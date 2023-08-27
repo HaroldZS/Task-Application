@@ -1,7 +1,8 @@
 import React from "react";
+import "./CreateTaskButton.css"
 
 function CreateTaskButton() {
-  return <button>+</button>;
+  return <button className="button-create-task">Create Task</button>;
 }
 
 export { CreateTaskButton };

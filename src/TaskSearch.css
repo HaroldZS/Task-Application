@@ -1,0 +1,21 @@
+.task-search{
+    border-radius: 20px;
+    border: none;
+    margin: 0 24px;
+    height: 44px;
+    width: calc(100% - 62px);
+    font-size: var(--md);
+    text-align: center;
+    font-weight: 400;
+    color: var(--dark-blue);
+    background-color: var(--white);
+}
+
+.task-search::placeholder{
+    color: var(--grey);
+}
+
+.task-search:focus{
+    outline-color: var(--grey);
+    outline-width: thin;
+}

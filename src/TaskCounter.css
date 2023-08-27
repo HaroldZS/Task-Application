@@ -1,0 +1,11 @@
+.task-counter {
+  font-size: 24px;
+  text-align: center;
+  margin: 0;
+  padding: 48px;
+  font-weight: normal;
+}
+
+.task-counter span{
+  font-weight: bold;
+}

@@ -16,18 +16,18 @@ const defaultTasks = [
 
 function App() {
   return (
-    <React.Fragment>
+    <>
       <TaskCounter completed={5} total={9} />
       <TaskSearch />
 
       <TaskList completed={true}>
-        {defaultTasks.map(({text, completed}) => (
-          <TaskItem key={text} text={text} completed={completed}/>
+        {defaultTasks.map(({ text, completed }) => (
+          <TaskItem key={text} text={text} completed={completed} />
         ))}
       </TaskList>
 
       <CreateTaskButton />
-    </React.Fragment>
+    </>
   );
 }
 

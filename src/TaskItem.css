@@ -1,0 +1,52 @@
+.task-item {
+  background-color: var(--white);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  border-radius: 10px;
+}
+
+.task-item-p {
+  margin: 24px 0 24px 24px;
+  width: calc(100% - 120px);
+  font-size: var(--sm);
+  line-height: 24px;
+  font-weight: 400px;
+}
+
+.task-item-p--completed {
+  text-decoration: line-through;
+}
+
+.icon {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  width: 48px;
+  font-size: var(--sm);
+  font-weight: bold;
+}
+
+.icon-check {
+  position: absolute;
+  left: 12px;
+}
+
+.icon-check--active {
+  color: var(--green);
+}
+
+.icon-delete {
+  background-color: var(--red);
+  color: var(--white);
+  border-radius: 0 8px 0 8px;
+  position: absolute;
+  top: 0px;
+  right: 0;
+  width: 64px;
+  height: 36px;
+}

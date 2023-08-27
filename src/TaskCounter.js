@@ -1,9 +1,10 @@
 import React from "react";
+import "./TaskCounter.css";
 
 function TaskCounter({ completed, total }) {
   return (
-    <h1>
-      You has completed {completed} of {total} tasks
+    <h1 className="task-counter">
+      You has completed <span>{completed}</span> of <span>{total}</span> tasks
     </h1>
   );
 }
