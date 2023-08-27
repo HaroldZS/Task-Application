@@ -1,7 +1,7 @@
 import React from "react";
 
 function CreateTaskButton() {
-  return <button>Create Task</button>;
+  return <button>+</button>;
 }
 
 export { CreateTaskButton };

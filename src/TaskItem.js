@@ -1,10 +1,10 @@
 import React from "react";
 
-function TaskItem() {
+function TaskItem({ text, completed }) {
   return (
     <li>
       <span>V</span>
-      <p>Task 1</p>
+      <p>{text}</p>
       <span>X</span>
     </li>
   );
