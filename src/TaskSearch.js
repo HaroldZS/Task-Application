@@ -1,11 +1,7 @@
 import React from "react";
 import "./TaskSearch.css";
 
-function TaskSearch(props) {
-  const [searchValue, setSearchValue] = React.useState("");
-
-  console.log(searchValue);
-
+function TaskSearch({searchValue, setSearchValue}) {
   return (
     <input
       placeholder="Cut onions"
