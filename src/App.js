@@ -6,16 +6,41 @@ import { TaskItem } from "./TaskItem";
 import { CreateTaskButton } from "./CreateTaskButton";
 import "./App.css";
 
-const defaultTasks = [
-  { text: "Cut onions", completed: true },
-  { text: "Play guitar", completed: false },
-  { text: "Walk to the moon", completed: false },
-  { text: "Listen to music", completed: false },
-  { text: "Draw a picture", completed: true },
-];
+// const defaultTasks = [
+//   { text: "Cut onions", completed: true },
+//   { text: "Play guitar", completed: false },
+//   { text: "Walk to the moon", completed: false },
+//   { text: "Listen to music", completed: false },
+//   { text: "Draw a picture", completed: true },
+// ];
+
+// localStorage.setItem('TASKS_V1', defaultTasks);
+// localStorage.removeItem('TASKS_V1');
+
+function useLocalStorage(itemName, initialValue) {
+  const localStorageItem = localStorage.getItem(itemName);
+
+  let parsedItem;
+
+  if (!localStorageItem) {
+    localStorage.setItem(itemName, JSON.stringify(initialValue));
+    parsedItem = initialValue;
+  } else {
+    parsedItem = JSON.parse(localStorageItem);
+  }
+
+  const [item, setItem] = React.useState(parsedItem);
+
+  const saveItem = (newItem) => {
+    localStorage.setItem(itemName, JSON.stringify(newItem));
+    setItem(newItem);
+  };
+
+  return [item, saveItem];
+}
 
 function App() {
-  const [tasks, setTasks] = React.useState(defaultTasks);
+  const [tasks, saveTasks] = useLocalStorage("TASKS_V1", []);
   const [searchValue, setSearchValue] = React.useState("");
   const completedTasks = tasks.filter((task) => task.completed).length;
   const totalTasks = tasks.length;
@@ -27,14 +52,14 @@ function App() {
     const newTasks = [...tasks];
     const taskIndex = newTasks.findIndex((task) => task.text == text);
     newTasks[taskIndex].completed = true;
-    setTasks(newTasks);
+    saveTasks(newTasks);
   };
 
   const deleteTask = (text) => {
     const newTasks = [...tasks];
     const taskIndex = newTasks.findIndex((task) => task.text == text);
     newTasks.splice(taskIndex, 1);
-    setTasks(newTasks);
+    saveTasks(newTasks);
   };
 
   return (
