@@ -33,11 +33,16 @@
 
 .icon-check {
   position: absolute;
-  left: 12px;
+  left: 8px;
+  top: 8px;
+  background-color: var(--grey);
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
 }
 
 .icon-check--active {
-  color: var(--green);
+  background-color: var(--green);
 }
 
 .icon-delete {
