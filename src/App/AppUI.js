@@ -5,6 +5,8 @@ import { TaskItem } from "../TaskItem";
 import { CreateTaskButton } from "../CreateTaskButton";
 
 function AppUI({
+  loading,
+  error,
   completedTasks,
   totalTasks,
   searchValue,
@@ -19,6 +21,10 @@ function AppUI({
       <TaskSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TaskList completed={true}>
+        {loading && <p>Loading...</p>}
+        {error && <p>Error...</p>}
+        {(!loading && searchedTasks.length === 0) && <p>Create your first task!</p>}
+
         {searchedTasks.map(({ text, completed }) => (
           <TaskItem
             key={text}

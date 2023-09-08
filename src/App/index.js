@@ -2,6 +2,8 @@ import React from "react";
 import { AppUI } from "./AppUI";
 import { useLocalStorage } from "./useLocalStorage";
 
+// localStorage.removeItem('TASKS_V1');
+
 // const defaultTasks = [
 //   { text: "Cut onions", completed: true },
 //   { text: "Play guitar", completed: false },
@@ -11,10 +13,14 @@ import { useLocalStorage } from "./useLocalStorage";
 // ];
 
 // localStorage.setItem('TASKS_V1', defaultTasks);
-// localStorage.removeItem('TASKS_V1');
 
 function App() {
-  const [tasks, saveTasks] = useLocalStorage("TASKS_V1", []);
+  const {
+    item: tasks,
+    saveItem: saveTasks,
+    loading,
+    error,
+  } = useLocalStorage("TASKS_V1", []);
   const [searchValue, setSearchValue] = React.useState("");
   const completedTasks = tasks.filter((task) => task.completed).length;
   const totalTasks = tasks.length;
@@ -38,6 +44,8 @@ function App() {
 
   return (
     <AppUI
+      loading={loading}
+      error={error}
       completedTasks={completedTasks}
       totalTasks={totalTasks}
       searchValue={searchValue}
