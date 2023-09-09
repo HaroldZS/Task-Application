@@ -2,6 +2,9 @@ import { TaskCounter } from "../TaskCounter";
 import { TaskSearch } from "../TaskSearch";
 import { TaskList } from "../TaskList";
 import { TaskItem } from "../TaskItem";
+import { TaskLoading } from "../TaskLoading";
+import { TaskError } from "../TaskError";
+import { TaskEmpty } from "../TaskEmpty";
 import { CreateTaskButton } from "../CreateTaskButton";
 
 function AppUI({
@@ -21,9 +24,15 @@ function AppUI({
       <TaskSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TaskList completed={true}>
-        {loading && <p>Loading...</p>}
-        {error && <p>Error...</p>}
-        {(!loading && searchedTasks.length === 0) && <p>Create your first task!</p>}
+        {loading && (
+          <>
+            <TaskLoading />
+            <TaskLoading />
+            <TaskLoading />
+          </>
+        )}
+        {error && <TaskError />}
+        {!loading && searchedTasks.length === 0 && <TaskEmpty />}
 
         {searchedTasks.map(({ text, completed }) => (
           <TaskItem
