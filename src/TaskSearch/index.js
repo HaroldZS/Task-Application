@@ -1,7 +1,10 @@
 import React from "react";
+import { taskContext } from "../TaskContext";
 import "./TaskSearch.css";
 
-function TaskSearch({searchValue, setSearchValue}) {
+function TaskSearch() {
+  const { searchValue, setSearchValue } = React.useContext(taskContext);
+
   return (
     <input
       placeholder="Cut onions"
