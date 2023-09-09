@@ -6,44 +6,39 @@ import { TaskLoading } from "../TaskLoading";
 import { TaskError } from "../TaskError";
 import { TaskEmpty } from "../TaskEmpty";
 import { CreateTaskButton } from "../CreateTaskButton";
+import { taskContext } from "../TaskContext";
 
-function AppUI({
-  loading,
-  error,
-  completedTasks,
-  totalTasks,
-  searchValue,
-  setSearchValue,
-  searchedTasks,
-  completeTask,
-  deleteTask,
-}) {
+function AppUI() {
   return (
     <>
-      <TaskCounter completed={completedTasks} total={totalTasks} />
-      <TaskSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+      <TaskCounter />
+      <TaskSearch />
 
-      <TaskList completed={true}>
-        {loading && (
-          <>
-            <TaskLoading />
-            <TaskLoading />
-            <TaskLoading />
-          </>
+      <taskContext.Consumer>
+        {({ loading, error, searchedTasks, completeTask, deleteTask }) => (
+          <TaskList>
+            {loading && (
+              <>
+                <TaskLoading />
+                <TaskLoading />
+                <TaskLoading />
+              </>
+            )}
+            {error && <TaskError />}
+            {!loading && searchedTasks.length === 0 && <TaskEmpty />}
+
+            {searchedTasks.map(({ text, completed }) => (
+              <TaskItem
+                key={text}
+                text={text}
+                completed={completed}
+                onComplete={() => completeTask(text)}
+                onDelete={() => deleteTask(text)}
+              />
+            ))}
+          </TaskList>
         )}
-        {error && <TaskError />}
-        {!loading && searchedTasks.length === 0 && <TaskEmpty />}
-
-        {searchedTasks.map(({ text, completed }) => (
-          <TaskItem
-            key={text}
-            text={text}
-            completed={completed}
-            onComplete={() => completeTask(text)}
-            onDelete={() => deleteTask(text)}
-          />
-        ))}
-      </TaskList>
+      </taskContext.Consumer>
 
       <CreateTaskButton />
     </>
