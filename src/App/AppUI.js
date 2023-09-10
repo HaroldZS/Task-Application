@@ -6,20 +6,14 @@ import { TaskItem } from "../TaskItem";
 import { TaskLoading } from "../TaskLoading";
 import { TaskError } from "../TaskError";
 import { TaskEmpty } from "../TaskEmpty";
+import { TaskForm } from "../TaskForm";
 import { CreateTaskButton } from "../CreateTaskButton";
 import { taskContext } from "../TaskContext";
 import { Modal } from "../Modal";
 
 function AppUI() {
-  const {
-    loading,
-    error,
-    searchedTasks,
-    completeTask,
-    deleteTask,
-    openModal,
-    setOpenModal,
-  } = React.useContext(taskContext);
+  const { loading, error, searchedTasks, completeTask, deleteTask, openModal } =
+    React.useContext(taskContext);
 
   return (
     <>
@@ -50,7 +44,11 @@ function AppUI() {
 
       <CreateTaskButton />
 
-      {openModal && <Modal>Add tasks function</Modal>}
+      {openModal && (
+        <Modal>
+          <TaskForm />
+        </Modal>
+      )}
     </>
   );
 }
