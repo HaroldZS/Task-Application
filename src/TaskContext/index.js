@@ -18,6 +18,12 @@ function TaskProvider({ children }) {
     text.toLowerCase().includes(searchValue.toLowerCase())
   );
 
+  const addTask = (text) => {
+    const newTasks = [...tasks];
+    newTasks.push({ text, completed: false });
+    saveTasks(newTasks);
+  };
+
   const completeTask = (text) => {
     const newTasks = [...tasks];
     const taskIndex = newTasks.findIndex((task) => task.text === text);
@@ -46,6 +52,7 @@ function TaskProvider({ children }) {
         deleteTask,
         openModal,
         setOpenModal,
+        addTask,
       }}
     >
       {children}
